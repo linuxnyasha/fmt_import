@@ -924,7 +924,7 @@ template <typename T> class buffer {
   }
 
   /// Appends data to the end of the buffer.
-  template <typename U> void append(const U* begin, const U* end) {
+  template <typename U> constexpr void append(const U* begin, const U* end) {
     while (begin != end) {
       auto count = to_unsigned(end - begin);
       try_reserve(size_ + count);
