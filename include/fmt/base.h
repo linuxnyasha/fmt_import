@@ -1170,13 +1170,13 @@ template <typename T> class basic_appender {
 
   FMT_CONSTEXPR basic_appender(detail::buffer<T>& buf) : buffer_(&buf) {}
 
-  auto operator=(T c) -> basic_appender& {
+  constexpr auto operator=(T c) -> basic_appender& {
     buffer_->push_back(c);
     return *this;
   }
-  auto operator*() -> basic_appender& { return *this; }
-  auto operator++() -> basic_appender& { return *this; }
-  auto operator++(int) -> basic_appender { return *this; }
+  constexpr auto operator*() -> basic_appender& { return *this; }
+  constexpr auto operator++() -> basic_appender& { return *this; }
+  constexpr auto operator++(int) -> basic_appender { return *this; }
 };
 
 using appender = basic_appender<char>;
