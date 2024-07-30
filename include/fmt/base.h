@@ -494,9 +494,9 @@ struct is_back_insert_iterator<
 
 // Extracts a reference to the container from *insert_iterator.
 template <typename OutputIt>
-inline auto get_container(OutputIt it) -> typename OutputIt::container_type& {
+constexpr auto get_container(OutputIt it) -> typename OutputIt::container_type& {
   struct accessor : OutputIt {
-    accessor(OutputIt base) : OutputIt(base) {}
+    constexpr accessor(OutputIt base) : OutputIt(base) {}
     using OutputIt::container;
   };
   return *accessor(it).container;
