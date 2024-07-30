@@ -1188,7 +1188,7 @@ struct is_back_insert_iterator<basic_appender<T>> : std::true_type {};
 // An optimized version of std::copy with the output value type (T).
 template <typename T, typename InputIt, typename OutputIt,
           FMT_ENABLE_IF(is_back_insert_iterator<OutputIt>::value)>
-auto copy(InputIt begin, InputIt end, OutputIt out) -> OutputIt {
+constexpr auto copy(InputIt begin, InputIt end, OutputIt out) -> OutputIt {
   get_container(out).append(begin, end);
   return out;
 }
