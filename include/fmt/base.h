@@ -980,7 +980,7 @@ class iterator_buffer : public Traits, public buffer<T> {
     if (buf.size() == buffer_size) static_cast<iterator_buffer&>(buf).flush();
   }
 
-  void flush() {
+  constexprvoid flush() {
     auto size = this->size();
     this->clear();
     const T* begin = data_;
@@ -989,23 +989,23 @@ class iterator_buffer : public Traits, public buffer<T> {
   }
 
  public:
-  explicit iterator_buffer(OutputIt out, size_t n = buffer_size)
+  constexpr explicit iterator_buffer(OutputIt out, size_t n = buffer_size)
       : Traits(n), buffer<T>(grow, data_, 0, buffer_size), out_(out) {}
-  iterator_buffer(iterator_buffer&& other) noexcept
+  constexpr iterator_buffer(iterator_buffer&& other) noexcept
       : Traits(other),
         buffer<T>(grow, data_, 0, buffer_size),
         out_(other.out_) {}
-  ~iterator_buffer() {
+  constexpr ~iterator_buffer() {
     // Don't crash if flush fails during unwinding.
     FMT_TRY { flush(); }
     FMT_CATCH(...) {}
   }
 
-  auto out() -> OutputIt {
+  constexpr auto out() -> OutputIt {
     flush();
     return out_;
   }
-  auto count() const -> size_t { return Traits::count() + this->size(); }
+  constexpr auto count() const -> size_t { return Traits::count() + this->size(); }
 };
 
 template <typename T>
