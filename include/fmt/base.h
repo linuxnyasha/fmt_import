@@ -1155,7 +1155,7 @@ template <typename T> class basic_appender {
  private:
   detail::buffer<T>* buffer_;
 
-  friend auto get_container(basic_appender app) -> detail::buffer<T>& {
+  constexpr friend auto get_container(basic_appender app) -> detail::buffer<T>& {
     return *app.buffer_;
   }
 
