@@ -869,7 +869,7 @@ template <typename T> class buffer {
       : ptr_(p), size_(sz), capacity_(cap), grow_(grow) {}
 
   FMT_CONSTEXPR20 ~buffer() = default;
-  buffer(buffer&&) = default;
+  constexpr buffer(buffer&&) = default;
 
   /// Sets the buffer data and capacity.
   FMT_CONSTEXPR void set(T* buf_data, size_t buf_capacity) noexcept {
@@ -884,11 +884,11 @@ template <typename T> class buffer {
   buffer(const buffer&) = delete;
   void operator=(const buffer&) = delete;
 
-  auto begin() noexcept -> T* { return ptr_; }
-  auto end() noexcept -> T* { return ptr_ + size_; }
+  constexpr auto begin() noexcept -> T* { return ptr_; }
+  constexpr auto end() noexcept -> T* { return ptr_ + size_; }
 
-  auto begin() const noexcept -> const T* { return ptr_; }
-  auto end() const noexcept -> const T* { return ptr_ + size_; }
+  constexpr auto begin() const noexcept -> const T* { return ptr_; }
+  constexpr auto end() const noexcept -> const T* { return ptr_ + size_; }
 
   /// Returns the size of this buffer.
   constexpr auto size() const noexcept -> size_t { return size_; }
