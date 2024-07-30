@@ -980,7 +980,7 @@ class iterator_buffer : public Traits, public buffer<T> {
     if (buf.size() == buffer_size) static_cast<iterator_buffer&>(buf).flush();
   }
 
-  constexprvoid flush() {
+  constexpr void flush() {
     auto size = this->size();
     this->clear();
     const T* begin = data_;
