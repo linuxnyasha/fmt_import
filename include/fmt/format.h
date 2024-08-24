@@ -493,9 +493,7 @@ FMT_CONSTEXPR20 inline auto countl_zero(uint64_t n) -> int {
 
 FMT_INLINE void assume(bool condition) {
   (void)condition;
-#if FMT_HAS_BUILTIN(__builtin_assume) && !FMT_ICC_VERSION
-  __builtin_assume(condition);
-#elif FMT_GCC_VERSION
+#if FMT_GCC_VERSION
   if (!condition) __builtin_unreachable();
 #endif
 }
